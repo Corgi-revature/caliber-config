@@ -49,7 +49,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.revature.caliber.config.Application</mainClass>
+					<mainClass>com.revature.caliber.config.SpringCloudConfigServerApplication</mainClass>
 					<addResources>true</addResources>
 				</configuration>
 				<executions>
@@ -69,13 +69,31 @@
 						<id>default</id>
 						<goals>
 							<goal>build</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>tag-latest</id>
+						<goals>
+							<goal>tag</goal>
 							<goal>push</goal>
 						</goals>
+						<configuration>
+							<tag>latest</tag>
+						</configuration>
+					</execution>
+					<execution>
+						<id>tag-version</id>
+						<goals>
+							<goal>tag</goal>
+							<goal>push</goal>
+						</goals>
+						<configuration>
+							<tag>${project.version}</tag>
+						</configuration>
 					</execution>
 				</executions>
 				<configuration>
           <repository>revaturesierra/${project.artifactId}</repository>
-					<tag>${project.version}</tag>
 					<buildArgs>
 						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
 					</buildArgs>
